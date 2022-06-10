@@ -20,6 +20,7 @@
   "homepage": "https://github.com/bhatshakran/graphqlchatapp#readme",
   "dependencies": {
     "apollo-server": "^3.8.2",
+    "crypto": "^1.0.1",
     "graphql": "^16.5.0"
   }
 }

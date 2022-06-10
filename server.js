@@ -1,6 +1,5 @@
 import { ApolloServer, gql } from "apollo-server";
-
-
+import crypto from "crypto";
 
 const users = [
   {
@@ -67,6 +66,17 @@ const typeDefs = gql`
     email: String!
     password: String!
   }
+
+  input UserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+  }
+
+  type Mutation {
+    createUser(newUser: UserInput!): User
+  }
 `;
 
 const resolvers = {
@@ -76,6 +86,17 @@ const resolvers = {
       return users.find((user) => {
         return user.id == id;
       });
+    },
+  },
+  Mutation: {
+    createUser: (_, { newUser }) => {
+      const user = {
+        id: crypto.randomUUID(),
+        ...newUser,
+      };
+      users.push(user);
+
+      return user;
     },
   },
 };
