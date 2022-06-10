@@ -1,0 +1,25 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/bhatshakran/graphqlchatapp.git"
+  },
+  "author": "Bhat Shaqran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bhatshakran/graphqlchatapp/issues"
+  },
+  "homepage": "https://github.com/bhatshakran/graphqlchatapp#readme",
+  "dependencies": {
+    "apollo-server": "^3.8.2",
+    "graphql": "^16.5.0"
+  }
+}
