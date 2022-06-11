@@ -1,5 +1,7 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer } from "apollo-server";
 import crypto from "crypto";
+import typeDefs from "./typeDefs.js";
+import resolvers from "./resolvers.js";
 
 const users = [
   {
@@ -52,54 +54,6 @@ const users = [
     password: "hqUH5VOgJtl",
   },
 ];
-
-const typeDefs = gql`
-  type Query {
-    users: [User!]!
-    user(id: ID!): User!
-  }
-
-  type User {
-    id: ID!
-    firstName: String!
-    lastName: String!
-    email: String!
-    password: String!
-  }
-
-  input UserInput {
-    firstName: String!
-    lastName: String!
-    email: String!
-    password: String!
-  }
-
-  type Mutation {
-    createUser(newUser: UserInput!): User
-  }
-`;
-
-const resolvers = {
-  Query: {
-    users: () => users,
-    user: (parent, { id }, ctx) => {
-      return users.find((user) => {
-        return user.id == id;
-      });
-    },
-  },
-  Mutation: {
-    createUser: (_, { newUser }) => {
-      const user = {
-        id: crypto.randomUUID(),
-        ...newUser,
-      };
-      users.push(user);
-
-      return user;
-    },
-  },
-};
 
 const server = new ApolloServer({
   typeDefs,
