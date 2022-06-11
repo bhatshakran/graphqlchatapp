@@ -60,6 +60,18 @@ const resolvers = {
 
       return { token };
     },
+    createMessage: async (_, { receiverId, text }, { userId }) => {
+      if (!userId) throw new ForbiddenError("You must be logged in!");
+      const message = await prisma.message.create({
+        data: {
+          text,
+          receiverId,
+          senderId: userId,
+        },
+      });
+
+      return message;
+    },
   },
 };
 
