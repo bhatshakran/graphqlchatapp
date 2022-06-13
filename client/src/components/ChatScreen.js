@@ -19,10 +19,15 @@ const ChatScreen = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box backgroundColor="#f5f5f5" height="80vh">
-        <MessageCard text="hi Shaqran" date="1" />
-        <MessageCard text="hi Shaqran" date="1" />
-        <MessageCard text="hi Shaqran" date="1" />
+      <Box
+        backgroundColor="#f5f5f5"
+        height="80vh"
+        padding="10px"
+        sx={{ overflowY: "auto" }}
+      >
+        <MessageCard text="hi Shaqran" date="1" direction="start" />
+        <MessageCard text="hi Shaqran" date="1" direction="end" />
+        <MessageCard text="hi Shaqran" date="1" direction="start" />
       </Box>
       <TextField
         placeholder="Enter a message"
