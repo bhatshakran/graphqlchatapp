@@ -8,7 +8,9 @@ const MessageCard = ({ text, date, direction }) => {
         <Typography variant="subtitle2" backgroundColor="white" padding="5px">
           {text}
         </Typography>
-        <Typography variant="caption">{date}</Typography>
+        <Typography variant="caption">
+          {new Date(date).toLocaleTimeString()}
+        </Typography>
       </Box>
     </Box>
   );

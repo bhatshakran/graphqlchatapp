@@ -1,11 +1,19 @@
+import { useQuery } from "@apollo/client";
 import { AppBar, Avatar, TextField, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { GET_MSGS } from "../graphql/queries.js";
 import MessageCard from "./MessageCard.js";
 
 const ChatScreen = () => {
   const { id, name } = useParams();
+  const { data, loading, error } = useQuery(GET_MSGS, {
+    variables: {
+      receiverId: +id,
+    },
+  });
+
   return (
     <Box flexGrow={1}>
       <AppBar position="static" sx={{ backgroundColor: "white", boxShadow: 0 }}>
@@ -25,9 +33,20 @@ const ChatScreen = () => {
         padding="10px"
         sx={{ overflowY: "auto" }}
       >
-        <MessageCard text="hi Shaqran" date="1" direction="start" />
-        <MessageCard text="hi Shaqran" date="1" direction="end" />
-        <MessageCard text="hi Shaqran" date="1" direction="start" />
+        {loading ? (
+          <Typography variant="h6">Loading Chats</Typography>
+        ) : (
+          data.messagesByUser.map((msg) => {
+            return (
+              <MessageCard
+                key={msg.id}
+                text={msg.text}
+                date={msg.createdAt}
+                direction={msg.receiverId == +id ? "end" : "start"}
+              />
+            );
+          })
+        )}
       </Box>
       <TextField
         placeholder="Enter a message"
