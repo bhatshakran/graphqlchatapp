@@ -8,15 +8,9 @@ import { GET_ALL_USERS } from "../graphql/queries";
 const Sidebar = ({ setLoggedIn }) => {
   const { loading, data, error } = useQuery(GET_ALL_USERS);
 
-  const users = [
-    { id: 1, firstName: "Shaqran", lastName: "Bhat" },
-    { id: 2, firstName: "Rafi", lastName: "Khan" },
-    { id: 3, firstName: "Ali", lastName: "Taj" },
-  ];
+
 
   if (loading) return <Typography variant="h6">Loading chats...</Typography>;
-  if (data) console.log(data);
-  if (error) console.log(error.message);
 
   return (
     <Box backgroundColor="#f7f7f7" height="100vh" width="250px" padding="10px">
@@ -31,7 +25,7 @@ const Sidebar = ({ setLoggedIn }) => {
       </Stack>
 
       <Divider />
-      {users.map((user) => {
+      {data.users.map((user) => {
         return <UserCard key={user.id} item={user} />;
       })}
     </Box>
