@@ -2,6 +2,11 @@ import prismaclient from "@prisma/client";
 import { AuthenticationError, ForbiddenError } from "apollo-server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { PostgresPubSub } from "graphql-postgres-subscriptions";
+
+const pubsub = new PostgresPubSub();
+
+const MESSAGE_ADDED = "MESSAGE_ADDED";
 
 const prisma = new prismaclient.PrismaClient();
 
@@ -86,7 +91,14 @@ const resolvers = {
         },
       });
 
+      pubsub.publish(MESSAGE_ADDED, { messageAdded: message });
+
       return message;
+    },
+  },
+  Subscription: {
+    messageAdded: {
+      subscribe: () => pubsub.asyncIterator(MESSAGE_ADDED),
     },
   },
 };

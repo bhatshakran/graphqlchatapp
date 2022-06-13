@@ -45,6 +45,10 @@ const typeDefs = gql`
   type Token {
     token: String!
   }
+
+  type Subscription {
+    messageAdded: Message
+  }
 `;
 
 export { typeDefs as default };

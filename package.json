@@ -28,6 +28,7 @@
     "crypto": "^1.0.1",
     "express": "^4.18.1",
     "graphql": "^16.5.0",
+    "graphql-postgres-subscriptions": "^1.0.5",
     "graphql-ws": "^5.9.0",
     "jsonwebtoken": "^8.5.1",
     "ws": "^8.8.0"
