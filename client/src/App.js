@@ -4,8 +4,8 @@ import HomeScreen from "./pages/HomeScreen.js";
 
 function App() {
   return (
-    // <AuthScreen />;
-    <HomeScreen />
+    <AuthScreen />
+    // <HomeScreen />
   );
 }
 
