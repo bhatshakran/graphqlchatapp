@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery, useSubscription } from "@apollo/client";
 import {
   AppBar,
   Avatar,
@@ -14,6 +14,7 @@ import { GET_MSGS } from "../graphql/queries.js";
 import MessageCard from "./MessageCard.js";
 import SendIcon from "@mui/icons-material/Send";
 import { SEND_MSG } from "../graphql/mutations.js";
+import { MSG_SUB } from "../graphql/subscriptions.js";
 
 const ChatScreen = () => {
   const { id, name } = useParams();
@@ -28,10 +29,11 @@ const ChatScreen = () => {
     },
   });
 
-  const [sendMessage] = useMutation(SEND_MSG, {
-    onCompleted(data) {
-      console.log(data);
-      setMessages((prevMessages) => [...prevMessages, data.createMessage]);
+  const [sendMessage] = useMutation(SEND_MSG);
+
+  const { data: subData } = useSubscription(MSG_SUB, {
+    onSubscriptionData({ subscriptionData: { data } }) {
+      setMessages((prevMessages) => [...prevMessages, data.messageAdded]);
     },
   });
 

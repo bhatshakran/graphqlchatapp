@@ -2,9 +2,9 @@ import prismaclient from "@prisma/client";
 import { AuthenticationError, ForbiddenError } from "apollo-server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { PostgresPubSub } from "graphql-postgres-subscriptions";
+import { PubSub } from "graphql-subscriptions";
 
-const pubsub = new PostgresPubSub();
+const pubsub = new PubSub();
 
 const MESSAGE_ADDED = "MESSAGE_ADDED";
 
