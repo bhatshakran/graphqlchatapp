@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
-import { createServer } from "http";
+// import { createServer } from "http";
 import express from "express";
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+// import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
@@ -13,57 +13,33 @@ import jwt from "jsonwebtoken";
 // the WebSocket server.
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
+// Create an Express app and HTTP server; we will attach both the WebSocket
+// server and the ApolloServer to this HTTP server.
+const app = express();
 const context = ({ req }) => {
   const { authorization } = req.headers;
   if (authorization) {
     const { userId } = jwt.verify(authorization, process.env.JWT_SECRET);
+
     return { userId };
   }
 };
 
-// Create an Express app and HTTP server; we will attach both the WebSocket
-// server and the ApolloServer to this HTTP server.
-const app = express();
-const httpServer = createServer(app);
-
-// Create our WebSocket server using the HTTP server we just set up.
-const wsServer = new WebSocketServer({
-  server: httpServer,
-  path: "/graphql",
-});
-
-// Save the returned server's info so we can shutdown this server later
-const serverCleanup = useServer({ schema }, wsServer);
-
 // Set up ApolloServer.
-const server = new ApolloServer({
+const apolloServer = new ApolloServer({
   schema,
   context,
-  csrfPrevention: true,
-  plugins: [
-    // Proper shutdown for the HTTP server.
-    ApolloServerPluginDrainHttpServer({ httpServer }),
-
-    // Proper shutdown for the WebSocket server.
-    {
-      async serverWillStart() {
-        return {
-          async drainServer() {
-            await serverCleanup.dispose();
-          },
-        };
-      },
-    },
-  ],
 });
 
-await server.start();
-server.applyMiddleware({ app, path: "/graphql" });
+await apolloServer.start();
+apolloServer.applyMiddleware({ app, path: "/graphql" });
 
-const PORT = 4000;
-// Now that our HTTP server is fully set up, we can listen to it.
-httpServer.listen(PORT, () => {
-  console.log(
-    `Subscriptions and Apollos server is now running on http://localhost:${PORT}${server.graphqlPath}`
-  );
+const server = app.listen(4000, () => {
+  const wsServer = new WebSocketServer({
+    server,
+    path: "/graphql",
+  });
+
+  useServer({ schema }, wsServer);
+  console.log("Apollo and sub server running!");
 });

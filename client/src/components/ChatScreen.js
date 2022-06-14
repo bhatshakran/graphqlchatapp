@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GET_MSGS } from "../graphql/queries.js";
 import MessageCard from "./MessageCard.js";
@@ -18,16 +18,20 @@ import { MSG_SUB } from "../graphql/subscriptions.js";
 
 const ChatScreen = () => {
   const { id, name } = useParams();
-  const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
+  const [text, setText] = useState("");
   const { data, loading, error } = useQuery(GET_MSGS, {
     variables: {
       receiverId: +id,
     },
+
     onCompleted(data) {
-      setMessages(data.messagesByUser);
+      const msgs = data.messagesByUser;
+      setMessages(msgs);
     },
   });
+
+  useEffect(() => {}, [messages]);
 
   const [sendMessage] = useMutation(SEND_MSG);
 
@@ -56,20 +60,16 @@ const ChatScreen = () => {
         padding="10px"
         sx={{ overflowY: "auto" }}
       >
-        {loading ? (
-          <Typography variant="h6">Loading Chats</Typography>
-        ) : (
-          messages.map((msg) => {
-            return (
-              <MessageCard
-                key={msg.createdAt}
-                text={msg.text}
-                date={msg.createdAt}
-                direction={msg.receiverId == +id ? "end" : "start"}
-              />
-            );
-          })
-        )}
+        {messages.map((msg) => {
+          return (
+            <MessageCard
+              key={msg.createdAt}
+              text={msg.text}
+              date={msg.createdAt}
+              direction={msg.receiverId == +id ? "end" : "start"}
+            />
+          );
+        })}
       </Box>
       <Stack direction="row">
         <TextField
@@ -90,11 +90,12 @@ const ChatScreen = () => {
                 text,
               },
             });
+            setText("");
           }}
         />
       </Stack>
     </Box>
   );
-};
+};;;;;;
 
 export default ChatScreen;

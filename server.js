@@ -10,6 +10,7 @@ const server = new ApolloServer({
     const { authorization } = req.headers;
     if (authorization) {
       const { userId } = jwt.verify(authorization, process.env.JWT_SECRET);
+
       return { userId };
     }
   },

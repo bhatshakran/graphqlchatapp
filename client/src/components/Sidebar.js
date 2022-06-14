@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import UserCard from "./UserCard";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_USERS } from "../graphql/queries";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ setLoggedIn }) => {
-  const { loading, data, error } = useQuery(GET_ALL_USERS);
+  // const [users, setUsers] = useState([]);
+  // const navigate = useNavigate();
 
-
+  const { data, loading, error, refetch } = useQuery(GET_ALL_USERS);
+  refetch();
 
   if (loading) return <Typography variant="h6">Loading chats...</Typography>;
 
@@ -25,9 +28,11 @@ const Sidebar = ({ setLoggedIn }) => {
       </Stack>
 
       <Divider />
-      {data.users.map((user) => {
-        return <UserCard key={user.id} item={user} />;
-      })}
+      {data.users
+        ? data.users.map((user) => {
+            return <UserCard key={user.id} item={user} />;
+          })
+        : ""}
     </Box>
   );
 };
