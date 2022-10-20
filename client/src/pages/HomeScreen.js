@@ -16,7 +16,7 @@ const AllRoutes = () => {
 
 const HomeScreen = ({ setLoggedIn }) => {
   return (
-    <div className='flex flex-col'>
+    <div className=' w-full bg-black'>
       <Header />
       {/* <Sidebar setLoggedIn={setLoggedIn} /> */}
       <AllRoutes />
