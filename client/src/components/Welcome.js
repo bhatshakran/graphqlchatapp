@@ -1,11 +1,13 @@
-import { Stack, Typography } from "@mui/material";
-import React from "react";
+import React from 'react';
+import Banner from './Banner';
 
 const Welcome = () => {
   return (
-    <Stack justifyContent="center" alignItems="center" flexGrow={1}>
-      <Typography variant="h2">Welcome to teams</Typography>
-    </Stack>
+    <main>
+      <div className='flex '>
+        <Banner />
+      </div>
+    </main>
   );
 };
 

@@ -1,13 +1,11 @@
-import { ApolloServer } from "apollo-server-express";
-// import { createServer } from "http";
-import express from "express";
-// import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { WebSocketServer } from "ws";
-import { useServer } from "graphql-ws/lib/use/ws";
-import resolvers from "./resolvers.js";
-import typeDefs from "./typeDefs.js";
-import jwt from "jsonwebtoken";
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { WebSocketServer } from 'ws';
+import { useServer } from 'graphql-ws/lib/use/ws';
+import resolvers from './resolvers.js';
+import typeDefs from './typeDefs.js';
+import jwt from 'jsonwebtoken';
 
 // Create the schema, which will be used separately by ApolloServer and
 // the WebSocket server.
@@ -32,14 +30,14 @@ const apolloServer = new ApolloServer({
 });
 
 await apolloServer.start();
-apolloServer.applyMiddleware({ app, path: "/graphql" });
+apolloServer.applyMiddleware({ app, path: '/graphql' });
 
 const server = app.listen(4000, () => {
   const wsServer = new WebSocketServer({
     server,
-    path: "/graphql",
+    path: '/graphql',
   });
 
   useServer({ schema }, wsServer);
-  console.log("Apollo and sub server running!");
+  console.log('Apollo and sub server running!');
 });
