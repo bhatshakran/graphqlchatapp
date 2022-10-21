@@ -38,7 +38,7 @@ const Info = () => {
         </div>
       </div>
 
-      <div className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 join rounded-lg text-white bg-secondary py-8 px-20 flex flex-col gap-4'>
+      <div className='absolute overflow-hidden max-h-60 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 join rounded-lg text-white bg-secondary py-8 px-20 flex flex-col gap-4'>
         <h2 className='text-5xl text-center font-acworth'>
           {' '}
           Join thousands of teams

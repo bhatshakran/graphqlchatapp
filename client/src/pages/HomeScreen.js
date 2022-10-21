@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Welcome from '../components/Welcome';
 import ChatScreen from '../components/ChatScreen';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const AllRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const HomeScreen = ({ setLoggedIn }) => {
       <Header />
       {/* <Sidebar setLoggedIn={setLoggedIn} /> */}
       <AllRoutes />
+      <Footer />
     </div>
   );
 };
