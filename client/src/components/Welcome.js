@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from './Banner';
 import Features from './Features';
+import Info from './Info';
 import Sponser from './Sponser';
 
 const Welcome = () => {
@@ -10,6 +11,7 @@ const Welcome = () => {
         <Banner />
         <Sponser />
         <Features />
+        <Info />
       </div>
     </main>
   );

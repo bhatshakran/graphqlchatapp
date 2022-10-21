@@ -5,12 +5,12 @@ import channel from '../img/channel.png';
 
 const Features = () => {
   return (
-    <div className='bg-white w-full'>
+    <div className='bg-white w-full pb-32 px-12'>
       <div className='features-section flex flex-col items-center'>
         <h2 className='text-6xl font-acworth w-2/3 text-center'>
           Some of our features that will help you
         </h2>
-        <div className='container flex flex-wrap justify-center text-left gap-x-8 mt-20 w-full'>
+        <div className='container flex flex-wrap justify-center text-left gap-8 mt-20 w-full'>
           <div className='w-full sm:w-1/4'>
             <img src={message} alt='message' />
             <h3 className='text-lg font-acworth mt-4'>Easy Communication</h3>
