@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sponser = () => {
   return (
-    <div className='text-black bg-white flex font-vistol flex-wrap justify-center items-center  gap-24 pt-96 pb-40  px-12 h-auto text-6xl'>
+    <div className='text-black bg-white flex font-vistol flex-wrap justify-center items-center  gap-16 sm:gap-24 pt-32 sm:pt-96 pb-40  px-12 h-auto text-4xl sm:text-6xl'>
       <h2 className='w-full text-center mt-32 font-acworth'>
         Our Awesome Sponsors:
       </h2>

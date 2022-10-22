@@ -7,7 +7,7 @@ const Features = () => {
   return (
     <div className='bg-white w-full pb-32 px-12'>
       <div className='features-section flex flex-col items-center'>
-        <h2 className='text-6xl font-acworth w-2/3 text-center'>
+        <h2 className='text-4xl sm:text-6xl font-acworth w-full sm:w-2/3 text-center'>
           Some of our features that will help you
         </h2>
         <div className='container flex flex-wrap justify-center text-left gap-8 mt-20 w-full'>

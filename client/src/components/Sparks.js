@@ -4,11 +4,9 @@ const Sparks = () => {
   return (
     <div>
       <svg
-        width='60'
-        height='59'
         viewBox='0 0 82 81'
         fill='none'
-        xmlns='http://www.w3.org/2000/svg'
+        className='w-12 h-10 sm:w-16 sm:h-14'
       >
         <path
           d='M16.5 3L45 60.5L49 58.4865L20.5 0L16.5 3Z'
