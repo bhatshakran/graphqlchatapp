@@ -6,7 +6,7 @@ import Sponser from './Sponser';
 
 const Welcome = () => {
   return (
-    <main className=''>
+    <main className='bg-black'>
       <div className='flex flex-col '>
         <Banner />
         <Sponser />

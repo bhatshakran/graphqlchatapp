@@ -17,7 +17,7 @@ const AllRoutes = () => {
 
 const HomeScreen = ({ setLoggedIn }) => {
   return (
-    <div className=' w-full bg-black'>
+    <div className=' w-full '>
       <Header />
       {/* <Sidebar setLoggedIn={setLoggedIn} /> */}
       <AllRoutes />
