@@ -5,7 +5,7 @@ import wooman from '../img/wooman.jpeg';
 const Info = () => {
   return (
     <div className='text-primary flex flex-col gap-y-40 pt-32 pb-60 px-12 relative'>
-      <div className='flex gap-x-12'>
+      <div className='flex flex-wrap gap-x-12 gap-y-8'>
         <div className='flex flex-col gap-y-6'>
           <h3 className='text-3xl font-acworth'>
             Easy and effortless way to connect with your team
@@ -21,7 +21,7 @@ const Info = () => {
         </div>
         <img src={huumans} alt='easy' className='w-96' />
       </div>
-      <div className='flex gap-x-12'>
+      <div className='flex  flex-wrap gap-x-12 gap-y-8'>
         <img src={wooman} alt='easy' className='w-80' />
         <div className='flex flex-col gap-y-6'>
           <h3 className='text-3xl font-acworth'>
@@ -38,8 +38,8 @@ const Info = () => {
         </div>
       </div>
 
-      <div className='absolute overflow-hidden max-h-60 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 join rounded-lg text-white bg-secondary py-8 px-20 flex flex-col gap-4'>
-        <h2 className='text-5xl text-center font-acworth'>
+      <div className='absolute overflow-hidden max-h-60 md:max-h-72 bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 join rounded-lg text-white bg-secondary py-8 px-4 lg:px-14 xl:px-20 flex flex-col gap-4 w-3/4 lg:w-3/5'>
+        <h2 className='text-3xl md:text-4xl lg:text-5xl text-center font-acworth'>
           {' '}
           Join thousands of teams
         </h2>
