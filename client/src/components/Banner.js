@@ -19,7 +19,7 @@ const Banner = () => {
           </div>
         </button>
       </div>
-      <div className='w-full sm:w-4/5 mt-16 max-w-4xl rounded-xl sm:absolute top-full -translate-y-1/2'>
+      <div className='w-full sm:w-4/5 mt-16 max-w-4xl rounded-xl sm:absolute top-full -translate-y-1/3 sm:-translate-y-1/2'>
         <img src={bannerImg} alt='bannerImg' className='rounded-xl' />
         <div className='absolute -right-10 -top-10 sm:-top-12 sm:-right-16 rotate-90'>
           <Sparks />
