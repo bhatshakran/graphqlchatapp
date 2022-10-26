@@ -31,7 +31,6 @@ const Features = () => {
 
           <div className='w-full sm:w-1/4'>
             <img src={channel} alt='channel' className='w-16 h-16' />
-
             <h3 className='text-lg font-acworth mt-4'>Discover Channel</h3>
             <p className='font-vistol'>
               Discover new channels you are interested in, meet with new people
