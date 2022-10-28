@@ -7,6 +7,8 @@ import resolvers from './resolvers.js';
 import typeDefs from './typeDefs.js';
 import jwt from 'jsonwebtoken';
 
+const port = process.env.PORT || 4000;
+
 // Create the schema, which will be used separately by ApolloServer and
 // the WebSocket server.
 const schema = makeExecutableSchema({ typeDefs, resolvers });
@@ -14,6 +16,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers });
 // Create an Express app and HTTP server; we will attach both the WebSocket
 // server and the ApolloServer to this HTTP server.
 const app = express();
+
 const context = ({ req }) => {
   const { authorization } = req.headers;
   if (authorization) {
@@ -30,14 +33,14 @@ const apolloServer = new ApolloServer({
 });
 
 await apolloServer.start();
+
 apolloServer.applyMiddleware({ app, path: '/graphql' });
 
-const server = app.listen(4000, () => {
+const server = app.listen(process.env.PORT, () => {
   const wsServer = new WebSocketServer({
     server,
     path: '/graphql',
   });
-
   useServer({ schema }, wsServer);
   console.log('Apollo and sub server running!');
 });
