@@ -8,8 +8,11 @@ function App() {
   );
   return (
     <>
-      {/*  {loggedIn ? ( */}
-      <HomeScreen setLoggedIn={setLoggedIn} />
+      {loggedIn ? (
+        <HomeScreen setLoggedIn={setLoggedIn} />
+      ) : (
+        <AuthScreen setLoggedIn={setLoggedIn} />
+      )}
     </>
   );
 }

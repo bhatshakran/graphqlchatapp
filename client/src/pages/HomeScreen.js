@@ -1,16 +1,17 @@
 import React from 'react';
-// import Sidebar from '../components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import Welcome from '../components/Welcome';
 import ChatScreen from '../components/ChatScreen';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import AuthScreen from './AuthScreen';
+import Chat from './Chat';
 
-const AllRoutes = () => {
+const AllRoutes = ({ setLoggedIn }) => {
   return (
     <Routes>
       <Route path='/' element={<Welcome />} />
       <Route path='/:id/:name' element={<ChatScreen />} />
+      <Route path='/chat' element={<Chat setLoggedIn={setLoggedIn} />} />
+      <Route path='/auth' element={<AuthScreen setLoggedIn={setLoggedIn} />} />
     </Routes>
   );
 };
@@ -18,10 +19,7 @@ const AllRoutes = () => {
 const HomeScreen = ({ setLoggedIn }) => {
   return (
     <div className=' w-full '>
-      <Header />
-      {/* <Sidebar setLoggedIn={setLoggedIn} /> */}
-      <AllRoutes />
-      <Footer />
+      <AllRoutes setLoggedIn={setLoggedIn} />
     </div>
   );
 };

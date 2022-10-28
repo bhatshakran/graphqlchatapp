@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bannerImg from '../img/bannerImg.png';
 import Sparks from './Sparks';
 
@@ -13,7 +14,7 @@ const Banner = () => {
           with everyone in an easy and comfortable way possible.
         </h6>
         <button className='bg-secondary font-vistol mt-16 py-3 px-6 rounded-xl text-lg text-gray-300 relative'>
-          Log in to Chatter
+          <Link to='/chat'>Log in to Chatter</Link>
           <div className='absolute -top-10 -left-14 -rotate-45'>
             <Sparks />
           </div>
