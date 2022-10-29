@@ -11,6 +11,9 @@ module.exports = {
       fontSize: {
         xxs: '10px',
       },
+      screens: {
+        sidebar: '250px',
+      },
       fontFamily: {
         acworth: ['Acworth'],
         vistol: ['Vistol'],

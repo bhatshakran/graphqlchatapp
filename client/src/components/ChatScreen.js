@@ -9,7 +9,6 @@ import { SEND_MSG } from '../graphql/mutations.js';
 import { MSG_SUB } from '../graphql/subscriptions.js';
 
 const ChatScreen = ({ userScreenData }) => {
-  console.log(userScreenData);
   const { id, firstName } = userScreenData;
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
@@ -58,7 +57,7 @@ const ChatScreen = ({ userScreenData }) => {
             <div className='text-bold font-acworth'>{firstName}</div>
           </div>
         </div>
-        <div className='bg-black bg-opacity-90 h-full overflow-y-scroll pb-24'>
+        <div className='bg-black bg-opacity-90 h-full overflow-y-scroll pb-24 px-8'>
           {messages.map((msg) => {
             return (
               <MessageCard
@@ -70,7 +69,7 @@ const ChatScreen = ({ userScreenData }) => {
             );
           })}
         </div>
-        <div className='bg-black flex items-center absolute bottom-0 w-full text-white gap-2'>
+        <div className='bg-black flex items-center absolute bottom-0 w-full text-white gap-2 pr-8'>
           <textarea
             className=' bg-transparent text-white flex-grow  resize-none focus:outline-none p-2'
             placeholder='Enter a message'

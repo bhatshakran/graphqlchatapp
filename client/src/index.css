@@ -22,13 +22,13 @@
 @layer components {
   .sidebar,
   .chat-screen {
-    height: 90vh;
+    height: 92vh;
   }
   .unopenedchat {
     background-image: url('./img/chatbg.jpeg');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    height: 90vh;
+    height: 92vh;
   }
 }
