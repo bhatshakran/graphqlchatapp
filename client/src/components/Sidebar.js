@@ -3,8 +3,13 @@ import UserCard from './UserCard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_USERS } from '../graphql/queries';
+import { useLoggedContext } from '../utils/hooks';
+// import { LoggedInContext } from '../App';
 
-const Sidebar = ({ setLoggedIn }) => {
+const Sidebar = () => {
+  // console.log(conData.setLoggedIn());
+  const { loggedIn, setLoggedIn } = useLoggedContext();
+
   const { data, loading, error, refetch } = useQuery(GET_ALL_USERS);
   refetch();
   console.log(data);

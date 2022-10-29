@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
   Box,
   Stack,
@@ -8,11 +8,14 @@ import {
   Card,
   CircularProgress,
   Alert,
-} from "@mui/material";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER, SIGNUP_USER } from "../graphql/mutations";
+} from '@mui/material';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER, SIGNUP_USER } from '../graphql/mutations';
+import { useLoggedContext } from '../utils/hooks';
 
-const AuthScreen = ({ setLoggedIn }) => {
+const AuthScreen = () => {
+  const { loggedIn, setLoggedIn } = useLoggedContext();
+
   const [formData, setFormData] = useState({});
   const [showLogin, setShowLogin] = useState(true);
   const authForm = useRef(null);
@@ -22,7 +25,7 @@ const AuthScreen = ({ setLoggedIn }) => {
     LOGIN_USER,
     {
       onCompleted(data) {
-        localStorage.setItem("jwt", data.signinUser.token);
+        localStorage.setItem('jwt', data.signinUser.token);
         setLoggedIn(true);
       },
     }
@@ -31,13 +34,13 @@ const AuthScreen = ({ setLoggedIn }) => {
   if (l1 || l2) {
     return (
       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        height='100vh'
       >
         <CircularProgress />
-        <Typography variant="h6">Authenticating...</Typography>
+        <Typography variant='h6'>Authenticating...</Typography>
       </Box>
     );
   }
@@ -69,40 +72,40 @@ const AuthScreen = ({ setLoggedIn }) => {
 
   return (
     <Box
-      component="form"
+      component='form'
       onSubmit={handleSubmit}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      height="80vh"
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      height='80vh'
       ref={authForm}
     >
-      <Card variant="outlined" sx={{ padding: "10px" }}>
-        <Stack direction="column" spacing={2} sx={{ width: "400px" }}>
+      <Card variant='outlined' sx={{ padding: '10px' }}>
+        <Stack direction='column' spacing={2} sx={{ width: '400px' }}>
           {signupData && (
-            <Alert severity="success">
+            <Alert severity='success'>
               {signupData.signupUser.firstName} Signed Up
             </Alert>
           )}
-          {e1 && <Alert severity="error">{e1.message}</Alert>}
-          {e2 && <Alert severity="error">{e2.message}</Alert>}
-          <Typography variant="h5">
+          {e1 && <Alert severity='error'>{e1.message}</Alert>}
+          {e2 && <Alert severity='error'>{e2.message}</Alert>}
+          <Typography variant='h5'>
             Please
-            {showLogin ? " Login" : " Signup"}
+            {showLogin ? ' Login' : ' Signup'}
           </Typography>
           {!showLogin && (
             <>
               <TextField
-                name="firstName"
-                label="First Name"
-                variant="standard"
+                name='firstName'
+                label='First Name'
+                variant='standard'
                 onChange={handleChange}
                 required
               />
               <TextField
-                name="lastName"
-                label="Last Name"
-                variant="standard"
+                name='lastName'
+                label='Last Name'
+                variant='standard'
                 onChange={handleChange}
                 required
               />
@@ -110,34 +113,34 @@ const AuthScreen = ({ setLoggedIn }) => {
           )}
 
           <TextField
-            type="email"
-            name="email"
-            label="email"
-            variant="standard"
+            type='email'
+            name='email'
+            label='email'
+            variant='standard'
             onChange={handleChange}
             required
           />
           <TextField
-            type="password"
-            name="password"
-            label="password"
-            variant="standard"
+            type='password'
+            name='password'
+            label='password'
+            variant='standard'
             onChange={handleChange}
             required
           />
           <Typography
-            textAlign="center"
-            variant="subtitle1"
+            textAlign='center'
+            variant='subtitle1'
             onClick={() => {
               setShowLogin(!showLogin);
               setFormData({});
               authForm.current.reset();
             }}
           >
-            {showLogin ? "Signup?" : "Login?"}
+            {showLogin ? 'Signup?' : 'Login?'}
           </Typography>
-          <Button variant="outlined" type="submit">
-            {showLogin ? "Login" : "Signup"}
+          <Button variant='outlined' type='submit'>
+            {showLogin ? 'Login' : 'Signup'}
           </Button>
         </Stack>
       </Card>

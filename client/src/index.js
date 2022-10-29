@@ -10,6 +10,7 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 import { split, HttpLink } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
+import { LoggedStateProvider } from './utils/hooks';
 
 const httpLink = new HttpLink({
   uri: 'https://graphqlchatapp.herokuapp.com/graphql',
@@ -50,7 +51,9 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <ApolloProvider client={client}>
-      <App />
+      <LoggedStateProvider>
+        <App />
+      </LoggedStateProvider>
     </ApolloProvider>
   </BrowserRouter>
   // </React.StrictMode>

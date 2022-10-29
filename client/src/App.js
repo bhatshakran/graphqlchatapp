@@ -1,20 +1,11 @@
-import { useState } from 'react';
-import AuthScreen from './pages/AuthScreen';
+import React from 'react';
+import AuthScreen from './pages/AuthScreen.js';
 import HomeScreen from './pages/HomeScreen.js';
+import { useLoggedContext } from './utils/hooks';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(
-    localStorage.getItem('jwt') ? true : false
-  );
-  return (
-    <>
-      {loggedIn ? (
-        <HomeScreen setLoggedIn={setLoggedIn} />
-      ) : (
-        <AuthScreen setLoggedIn={setLoggedIn} />
-      )}
-    </>
-  );
+  const { loggedIn } = useLoggedContext();
+  return <>{loggedIn ? <HomeScreen /> : <AuthScreen />}</>;
 }
 
 export default App;

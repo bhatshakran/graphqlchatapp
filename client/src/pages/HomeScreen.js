@@ -10,7 +10,7 @@ const AllRoutes = ({ setLoggedIn }) => {
     <Routes>
       <Route path='/' element={<Welcome />} />
       <Route path='/:id/:name' element={<ChatScreen />} />
-      <Route path='/chat' element={<Chat setLoggedIn={setLoggedIn} />} />
+      <Route path='/chat' element={<Chat />} />
       <Route path='/auth' element={<AuthScreen setLoggedIn={setLoggedIn} />} />
     </Routes>
   );

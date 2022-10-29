@@ -14,7 +14,7 @@ const ChatScreen = () => {
   const { id, name } = useParams();
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
-  const [emojiModal, setEmojiModal] = useState(true);
+  const [emojiModal, setEmojiModal] = useState(false);
   const { data, loading, error } = useQuery(GET_MSGS, {
     variables: {
       receiverId: +id,
