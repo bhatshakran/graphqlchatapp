@@ -1,12 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const UserCard = ({ item: { firstName, lastName, id } }) => {
-  const navigate = useNavigate();
+const UserCard = ({ item: { firstName, lastName, id }, runUserCallback }) => {
+  const setUserCb = () => {
+    runUserCallback();
+  };
   return (
     <div
       className='usercard flex justify-start gap-2 py-4 items-center'
-      onClick={() => navigate(`/${id}/${firstName} ${lastName}`)}
+      onClick={() => setUserCb()}
     >
       <img
         src={`https://avatars.dicebear.com/api/initials/${firstName} ${lastName}.svg`}

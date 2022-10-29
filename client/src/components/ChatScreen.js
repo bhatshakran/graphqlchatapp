@@ -2,16 +2,15 @@ import { useMutation, useQuery, useSubscription } from '@apollo/client';
 import EmojiPicker from 'emoji-picker-react';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { GET_MSGS } from '../graphql/queries.js';
 import MessageCard from './MessageCard.js';
 import SendIcon from '@mui/icons-material/Send';
 import { SEND_MSG } from '../graphql/mutations.js';
 import { MSG_SUB } from '../graphql/subscriptions.js';
-import Sidebar from './Sidebar';
 
-const ChatScreen = () => {
-  const { id, name } = useParams();
+const ChatScreen = ({ userScreenData }) => {
+  console.log(userScreenData);
+  const { id, firstName } = userScreenData;
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
   const [emojiModal, setEmojiModal] = useState(false);
@@ -45,22 +44,21 @@ const ChatScreen = () => {
   };
 
   return (
-    <div className='h-screen  text-white flex'>
-      <Sidebar />
+    <div className='chat-screen flex-grow text-white flex'>
       <div className='   flex flex-col w-full h-full relative'>
         <div className='app-bar p-2 bg-black '>
           <div className='flex items-center'>
             <img
-              src={`https://avatars.dicebear.com/api/initials/${name}.svg`}
+              src={`https://avatars.dicebear.com/api/initials/${firstName}.svg`}
               width={'32px'}
               height={'32px'}
               alt='avatar'
               className='mr-2 rounded-full'
             />
-            <div className='text-bold font-acworth'>{name}</div>
+            <div className='text-bold font-acworth'>{firstName}</div>
           </div>
         </div>
-        <div className='bg-black bg-opacity-90 h-full '>
+        <div className='bg-black bg-opacity-90 h-full overflow-y-scroll pb-24'>
           {messages.map((msg) => {
             return (
               <MessageCard
