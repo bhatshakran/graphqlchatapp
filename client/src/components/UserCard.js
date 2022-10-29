@@ -1,26 +1,24 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Stack, Avatar, Typography } from "@mui/material";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserCard = ({ item: { firstName, lastName, id } }) => {
   const navigate = useNavigate();
   return (
-    <Stack
-      className="usercard"
-      direction="row"
-      spacing={2}
-      sx={{ py: 1 }}
-      alignItems="center"
+    <div
+      className='usercard flex justify-start gap-2 py-4 items-center'
       onClick={() => navigate(`/${id}/${firstName} ${lastName}`)}
     >
-      <Avatar
+      <img
         src={`https://avatars.dicebear.com/api/initials/${firstName} ${lastName}.svg`}
-        sx={{ width: "32px", height: "32px" }}
+        alt='avatar'
+        width='32px'
+        height='32px'
+        className='rounded-full'
       />
-      <Typography variant="subtitle2">
-        {firstName} {lastName}{" "}
-      </Typography>
-    </Stack>
+      <div className='font-vistol'>
+        {firstName} {lastName}{' '}
+      </div>
+    </div>
   );
 };
 

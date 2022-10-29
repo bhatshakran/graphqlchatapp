@@ -1,18 +1,15 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import React from 'react';
 
 const MessageCard = ({ text, date, direction }) => {
   return (
-    <Box display="flex" justifyContent={direction}>
-      <Box>
-        <Typography variant="subtitle2" backgroundColor="white" padding="5px">
-          {text}
-        </Typography>
-        <Typography variant="caption">
+    <div className={`flex justify-${direction}  my-6 mx-2`}>
+      <div className=' bg-black p-2 rounded-md'>
+        <div className='text-md font-acworth justify-end'>{text}</div>
+        <div className=' text-xxs opacity-50 mt-2'>
           {new Date(date).toLocaleTimeString()}
-        </Typography>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

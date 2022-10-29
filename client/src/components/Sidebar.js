@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box, Divider, Stack, Typography } from '@mui/material';
 import UserCard from './UserCard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useQuery } from '@apollo/client';
@@ -10,27 +9,26 @@ const Sidebar = ({ setLoggedIn }) => {
   refetch();
   console.log(data);
 
-  if (loading) return <Typography variant='h6'>Loading chats...</Typography>;
+  if (loading) return <div>Loading chats...</div>;
 
   return (
-    <Box backgroundColor='#f7f7f7' width='250px' padding='10px'>
-      <Stack direction='row' justifyContent='space-between'>
-        <Typography variant='h6'>Chat</Typography>
+    <div className='bg-black px-4 w-1/3 py-2'>
+      <div className='flex justify-between w-full'>
+        <div className='font-acworth '>Chatter</div>
         <LogoutIcon
           onClick={() => {
             localStorage.removeItem('jwt');
             setLoggedIn(false);
           }}
         />
-      </Stack>
+      </div>
 
-      <Divider />
       {data.users
         ? data.users.map((user) => {
             return <UserCard key={user.id} item={user} />;
           })
         : ''}
-    </Box>
+    </div>
   );
 };
 
