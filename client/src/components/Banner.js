@@ -9,7 +9,7 @@ const Banner = () => {
     <div className='text-white pt-32 w-full flex flex-col items-center gap-y-24 justify-center px-12 relative sm:pb-96 '>
       <div className=' max-w-xl text-center'>
         <h2 className='text-6xl font-acworth'>Connect with your gang!</h2>
-        <h6 className='mt-12 font-vistol text-primary'>
+        <h6 className='mt-12 font-mustica text-primary opacity-80'>
           Chatter is a messaging app for your team that will help you to connect
           with everyone in an easy and comfortable way possible.
         </h6>

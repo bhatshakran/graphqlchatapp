@@ -28,11 +28,9 @@ const ChatScreen = ({ userScreenData }) => {
 
   React.useEffect(() => {
     if (messages) {
-      console.log('messages here');
+      const scrollDiv = document.getElementById('scroll-bottom');
+      scrollDiv.scrollIntoView();
     }
-    const scrollDiv = document.getElementById('scroll-bottom');
-    console.log(scrollDiv);
-    scrollDiv.scrollIntoView();
   }, [messages]);
 
   const [sendMessage] = useMutation(SEND_MSG);

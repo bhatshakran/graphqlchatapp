@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div className='bg-black text-primary font-vistol  flex w-full items-center px-12 sm:p-4 py-8'>
+    <div className='bg-black text-primary font-mustica  flex w-full items-center px-12 sm:p-4 py-8'>
       <div className='sm:hidden flex  justify-between gap-1 w-full'>
         <div className='flex items-center gap-1'>
           <h2 className='font-acworth'>Chatter</h2>

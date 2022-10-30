@@ -19,8 +19,8 @@ const Sidebar = ({ showUserScreen }) => {
   };
 
   return (
-    <div className='bg-black px-4 w-1/3  max-w-screen-sidebar py-2 text-white sidebar'>
-      <div className='flex justify-between w-full'>
+    <div className='bg-black w-1/3  max-w-screen-sidebar py-2 text-white sidebar border border-black'>
+      <div className='flex justify-between w-full  px-4 py-2'>
         <div className='font-acworth '>Chats</div>
         <LogoutIcon
           className='cursor-pointer'

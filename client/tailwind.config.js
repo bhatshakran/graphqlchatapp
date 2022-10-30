@@ -16,7 +16,7 @@ module.exports = {
       },
       fontFamily: {
         acworth: ['Acworth'],
-        vistol: ['Vistol'],
+        mustica: ['Mustica'],
       },
     },
   },

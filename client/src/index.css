@@ -6,9 +6,10 @@
   font-family: 'Acworth';
   src: url('../public/fonts/acworth/Acworth-Bold.otf');
 }
+
 @font-face {
-  font-family: 'Vistol';
-  src: url('../public/fonts/vistol/VistolSans-Light.otf');
+  font-family: 'Mustica';
+  src: url('../public/fonts/mustica/MusticaPro-SemiBold.otf');
 }
 
 @layer base {
