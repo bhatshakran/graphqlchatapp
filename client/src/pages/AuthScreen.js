@@ -1,17 +1,18 @@
 import React, { useRef, useState } from 'react';
-import {
-  Box,
-  Stack,
-  Typography,
-  Button,
-  TextField,
-  Card,
-  CircularProgress,
-  Alert,
-} from '@mui/material';
+import uncle from '../img/svgs/uncle.svg';
+import blackgirl from '../img/svgs/blackgirl.svg';
+import blackspecs from '../img/svgs/blackspecs.svg';
+import child from '../img/svgs/child.svg';
+import brownkid from '../img/svgs/brownkid.svg';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER, SIGNUP_USER } from '../graphql/mutations';
 import { useLoggedContext } from '../utils/hooks';
+
+const imgsArr = [blackgirl, blackspecs, child, brownkid];
+
+const getRandomImg = () => {
+  return imgsArr[Math.floor(Math.random() * imgsArr.length)];
+};
 
 const AuthScreen = () => {
   const { loggedIn, setLoggedIn } = useLoggedContext();
@@ -33,15 +34,10 @@ const AuthScreen = () => {
 
   if (l1 || l2) {
     return (
-      <Box
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-        height='100vh'
-      >
-        <CircularProgress />
-        <Typography variant='h6'>Authenticating...</Typography>
-      </Box>
+      <div className='flex justify-center items-center h-screen'>
+        Loading....
+        <h6>Authenticating...</h6>
+      </div>
     );
   }
 
@@ -71,80 +67,92 @@ const AuthScreen = () => {
   };
 
   return (
-    <Box
-      component='form'
+    <form
       onSubmit={handleSubmit}
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      height='80vh'
       ref={authForm}
+      className='bg-black h-screen text-white'
     >
-      <Card variant='outlined' sx={{ padding: '10px' }}>
-        <Stack direction='column' spacing={2} sx={{ width: '400px' }}>
+      <div className='flex justify-center w-full items-center h-full'>
+        <div className='flex flex-col bg-black gap-8 w-72'>
           {signupData && (
-            <Alert severity='success'>
+            <div severity='success'>
               {signupData.signupUser.firstName} Signed Up
-            </Alert>
+            </div>
           )}
-          {e1 && <Alert severity='error'>{e1.message}</Alert>}
-          {e2 && <Alert severity='error'>{e2.message}</Alert>}
-          <Typography variant='h5'>
-            Please
-            {showLogin ? ' Login' : ' Signup'}
-          </Typography>
+          {e1 && <div severity='error'>{e1.message}</div>}
+          {e2 && <div severity='error'>{e2.message}</div>}
+          <div className='font-acworth text-3xl flex flex-col justify-center gap-6 items-center'>
+            <img
+              src={getRandomImg()}
+              alt='avatar'
+              width='70px'
+              height='70px'
+              className='rounded-full'
+            />
+            <h5>{showLogin ? ' Login' : ' Signup'}</h5>
+          </div>
           {!showLogin && (
             <>
-              <TextField
+              <input
+                type='text'
                 name='firstName'
-                label='First Name'
-                variant='standard'
+                placeholder='First Name'
                 onChange={handleChange}
                 required
+                className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
               />
-              <TextField
+              <input
+                type='text'
                 name='lastName'
-                label='Last Name'
-                variant='standard'
+                placeholder='Last Name'
                 onChange={handleChange}
                 required
+                className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
               />
             </>
           )}
 
-          <TextField
+          <input
             type='email'
             name='email'
             label='email'
+            placeholder='Email'
             variant='standard'
             onChange={handleChange}
             required
+            className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
           />
-          <TextField
+          <input
             type='password'
             name='password'
             label='password'
             variant='standard'
+            placeholder='Password'
             onChange={handleChange}
             required
+            className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
           />
-          <Typography
-            textAlign='center'
-            variant='subtitle1'
-            onClick={() => {
-              setShowLogin(!showLogin);
-              setFormData({});
-              authForm.current.reset();
-            }}
+          <div className='w-full'>
+            <h3
+              className='font-acworth text-secondary w-auto cursor-pointer hover:text-white'
+              onClick={() => {
+                setShowLogin(!showLogin);
+                setFormData({});
+                authForm.current.reset();
+              }}
+            >
+              {showLogin ? ' Signup' : 'Login'}
+            </h3>
+          </div>
+          <button
+            className='bg-secondary text-primary p-2 rounded-full hover:bg-white hover:text-black ease-in-out '
+            type='submit'
           >
-            {showLogin ? 'Signup?' : 'Login?'}
-          </Typography>
-          <Button variant='outlined' type='submit'>
             {showLogin ? 'Login' : 'Signup'}
-          </Button>
-        </Stack>
-      </Card>
-    </Box>
+          </button>
+        </div>
+      </div>
+    </form>
   );
 };
 
