@@ -26,6 +26,15 @@ const ChatScreen = ({ userScreenData }) => {
 
   useEffect(() => {}, [messages]);
 
+  React.useEffect(() => {
+    if (messages) {
+      console.log('messages here');
+    }
+    const scrollDiv = document.getElementById('scroll-bottom');
+    console.log(scrollDiv);
+    scrollDiv.scrollIntoView();
+  }, [messages]);
+
   const [sendMessage] = useMutation(SEND_MSG);
 
   const { data: subData } = useSubscription(MSG_SUB, {
@@ -57,8 +66,11 @@ const ChatScreen = ({ userScreenData }) => {
             <div className='text-bold font-acworth'>{firstName}</div>
           </div>
         </div>
-        <div className='bg-black bg-opacity-90 h-full overflow-y-scroll pb-24 px-8'>
-          {messages.map((msg) => {
+        <div
+          // id='scroll-bottom'
+          className='user-chat-screen bg-black bg-opacity-90  overflow-auto  px-8'
+        >
+          {messages.map((msg, idx) => {
             return (
               <MessageCard
                 key={msg.createdAt}
@@ -68,6 +80,7 @@ const ChatScreen = ({ userScreenData }) => {
               />
             );
           })}
+          <div id='scroll-bottom' className='h-24 w-full  relative'></div>
         </div>
         <div className='bg-black flex items-center absolute bottom-0 w-full text-white gap-2 pr-8'>
           <textarea

@@ -10,7 +10,7 @@ const Chat = () => {
   };
   return (
     <div>
-      <div className='bg-black text-white p-4 flex justify-between'>
+      <div className='bg-black text-white p-4 flex justify-between items-center'>
         <div className='font-acworth text-2xl flex items-center gap-1'>
           Chatter
           <div className='w-4 h-4  bg-blue-500 rounded-full'></div>

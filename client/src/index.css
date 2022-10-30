@@ -31,4 +31,8 @@
     background-repeat: no-repeat;
     height: 92vh;
   }
+
+  .user-chat-screen {
+    height: 600px;
+  }
 }

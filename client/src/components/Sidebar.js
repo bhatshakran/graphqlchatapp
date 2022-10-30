@@ -10,7 +10,6 @@ const Sidebar = ({ showUserScreen }) => {
 
   const { data, loading, error, refetch } = useQuery(GET_ALL_USERS);
   refetch();
-  console.log(data);
 
   if (loading)
     return <div className='p-8 text-4xl font-acworth'>Loading chats...</div>;
