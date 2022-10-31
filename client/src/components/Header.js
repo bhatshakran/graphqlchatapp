@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -23,7 +24,7 @@ const Header = () => {
       </div>
       <div className='hidden sm:inline-block mr-6'>
         <button className='border border-gray-500 rounded-3xl p-2'>
-          create account
+          <Link to='/auth'>create account</Link>
         </button>
       </div>
     </div>
