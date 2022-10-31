@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Chat = () => {
   const [userScreenData, setUserScreenData] = React.useState();
+  const [activeChild, setActiveChild] = React.useState();
   const populateUserData = (id, firstName) => {
+    setActiveChild(id);
     setUserScreenData({ id, firstName });
   };
   return (
@@ -25,7 +27,7 @@ const Chat = () => {
         </h2>
       </div>
       <div className='flex w-full'>
-        <Sidebar showUserScreen={populateUserData} />
+        <Sidebar showUserScreen={populateUserData} activeChild={activeChild} />
         {userScreenData ? (
           <ChatScreen userScreenData={userScreenData} />
         ) : (

@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ALL_USERS } from '../graphql/queries';
 import { useLoggedContext } from '../utils/hooks';
 
-const Sidebar = ({ showUserScreen }) => {
+const Sidebar = ({ showUserScreen, activeChild }) => {
   const { loggedIn, setLoggedIn } = useLoggedContext();
 
   const { data, loading, error, refetch } = useQuery(GET_ALL_USERS);
@@ -37,6 +37,7 @@ const Sidebar = ({ showUserScreen }) => {
               <UserCard
                 key={user.id}
                 item={user}
+                activeChild={activeChild}
                 runUserCallback={() =>
                   runsUserCallback(user.id, user.firstName)
                 }
