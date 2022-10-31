@@ -1,6 +1,6 @@
 import React from 'react';
-import message from '../img/message.svg';
-import support from '../img/support.svg';
+import message from '../img/svgs/message.svg';
+import support from '../img/svgs/support.svg';
 import channel from '../img/webp/channel.webp';
 
 const Features = () => {

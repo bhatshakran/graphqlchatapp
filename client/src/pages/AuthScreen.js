@@ -86,8 +86,17 @@ const AuthScreen = () => {
   };
 
   return (
-    <div className='bg-black h-screen  flex font-vistol'>
-      <form onSubmit={handleSubmit} ref={authForm} className='w-1/2 bg-white'>
+    <div className='bg-black h-screen  flex font-vistol overflow-hidden'>
+      <form
+        onSubmit={handleSubmit}
+        ref={authForm}
+        className='w-1/2 bg-white flex items-center flex-col'
+      >
+        <div className='p-8 text-left w-full '>
+          <Link to='/' className='text-secondary font-acworth hover:text-black'>
+            Go back{' '}
+          </Link>
+        </div>
         <div className='flex justify-center w-full items-center h-full'>
           <div className='flex flex-col bg-white gap-8 w-72'>
             {signupData && (
