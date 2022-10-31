@@ -5,11 +5,13 @@
 @font-face {
   font-family: 'Acworth';
   src: url('../public/fonts/acworth/Acworth-Bold.otf');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Mustica';
   src: url('../public/fonts/mustica/MusticaPro-SemiBold.otf');
+  font-display: swap;
 }
 
 @layer base {
@@ -26,8 +28,8 @@
     height: 92vh;
   }
   .unopenedchat {
-    background-image: url('./img/svgs/sallyonball.svg');
-    background-size: 400px 700px;
+    background-image: url('./img/webp/sallyonball.webp');
+    background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
     height: 92vh;
