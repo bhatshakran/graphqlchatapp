@@ -26,11 +26,12 @@
     height: 92vh;
   }
   .unopenedchat {
-    background-image: url('./img/chatbg.jpeg');
-    background-size: cover;
-    background-position: center top;
+    background-image: url('./img/svgs/sallyonball.svg');
+    background-size: 400px 700px;
+    background-position: center;
     background-repeat: no-repeat;
     height: 92vh;
+    background-color: black;
   }
 
   .user-chat-screen {

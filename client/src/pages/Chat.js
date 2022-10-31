@@ -17,7 +17,7 @@ const Chat = () => {
         </div>
         <h2 className=''>
           <Link
-            className='border border-gray-400 p-2 rounded-full font-vistol'
+            className='border border-gray-400 p-2 rounded-full font-mustica'
             to='/'
           >
             Go back home
@@ -29,11 +29,8 @@ const Chat = () => {
         {userScreenData ? (
           <ChatScreen userScreenData={userScreenData} />
         ) : (
-          <div className='unopenedchat flex-grow  text-white flex flex-col items-center justify-center'>
-            <h2 className='font-acworth text-6xl '>Chatter</h2>
-            <p className='text-2xl font-vistol opacity-70 mt-4'>
-              Connect with your gang!
-            </p>
+          <div className='unopenedchat flex-grow  text-white flex flex-col items-center justify-end pb-12'>
+            <h2 className='font-mustica text-5xl '>Welcome to your chats!</h2>
           </div>
         )}
       </div>

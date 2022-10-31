@@ -9,11 +9,18 @@ import signupsaly from '../img/svgs/signupsaly.svg';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER, SIGNUP_USER } from '../graphql/mutations';
 import { useLoggedContext } from '../utils/hooks';
-
+import RiseLoader from 'react-spinners/RiseLoader';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Link } from 'react-router-dom';
 const imgsArr = [blackgirl, blackspecs, child, brownkid, spanishguy];
 
 const getRandomImg = () => {
   return imgsArr[Math.floor(Math.random() * imgsArr.length)];
+};
+const override = {
+  display: 'block',
+  margin: '0 auto',
+  borderColor: 'red',
 };
 
 const AuthScreen = () => {
@@ -36,9 +43,16 @@ const AuthScreen = () => {
 
   if (l1 || l2) {
     return (
-      <div className='flex justify-center items-center h-screen'>
-        Loading....
-        <h6>Authenticating...</h6>
+      <div className='flex justify-center flex-col items-center h-screen gap-12'>
+        <RiseLoader
+          color='#36d7b7'
+          loading={true}
+          cssOverride={override}
+          size={30}
+          aria-label='Loading Spinner'
+          data-testid='loader'
+        />
+        <h6 className='text-2xl font-mustica'>Authenticating...</h6>
       </div>
     );
   }
@@ -74,8 +88,19 @@ const AuthScreen = () => {
         <div className='flex justify-center w-full items-center h-full'>
           <div className='flex flex-col bg-white gap-8 w-72'>
             {signupData && (
-              <div severity='success'>
-                {signupData.signupUser.firstName} Signed Up
+              <div className='text-green-500 flex flex-col gap-1'>
+                <div className='flex gap-1'>
+                  <h6 className='capitalize'>
+                    {signupData.signupUser.firstName}
+                  </h6>
+                  <span>signed up</span>
+                  <CheckCircleIcon />
+                </div>
+                <div>
+                  <Link to='/login' className='text-secondary font-acworth'>
+                    You can now Login
+                  </Link>
+                </div>
               </div>
             )}
             {e1 && <div severity='error'>{e1.message}</div>}
