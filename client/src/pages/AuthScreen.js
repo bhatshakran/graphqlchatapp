@@ -1,14 +1,16 @@
 import React, { useRef, useState } from 'react';
-import uncle from '../img/svgs/uncle.svg';
+import spanishguy from '../img/svgs/spanishguy.svg';
 import blackgirl from '../img/svgs/blackgirl.svg';
 import blackspecs from '../img/svgs/blackspecs.svg';
 import child from '../img/svgs/child.svg';
 import brownkid from '../img/svgs/brownkid.svg';
+import floating from '../img/svgs/floating.svg';
+import signupsaly from '../img/svgs/signupsaly.svg';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER, SIGNUP_USER } from '../graphql/mutations';
 import { useLoggedContext } from '../utils/hooks';
 
-const imgsArr = [blackgirl, blackspecs, child, brownkid];
+const imgsArr = [blackgirl, blackspecs, child, brownkid, spanishguy];
 
 const getRandomImg = () => {
   return imgsArr[Math.floor(Math.random() * imgsArr.length)];
@@ -16,7 +18,7 @@ const getRandomImg = () => {
 
 const AuthScreen = () => {
   const { loggedIn, setLoggedIn } = useLoggedContext();
-
+  const [avatarImg] = React.useState(() => getRandomImg());
   const [formData, setFormData] = useState({});
   const [showLogin, setShowLogin] = useState(true);
   const authForm = useRef(null);
@@ -67,92 +69,103 @@ const AuthScreen = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      ref={authForm}
-      className='bg-black h-screen text-white'
-    >
-      <div className='flex justify-center w-full items-center h-full'>
-        <div className='flex flex-col bg-black gap-8 w-72'>
-          {signupData && (
-            <div severity='success'>
-              {signupData.signupUser.firstName} Signed Up
+    <div className='bg-black h-screen  flex font-vistol'>
+      <form onSubmit={handleSubmit} ref={authForm} className='w-1/2 bg-white'>
+        <div className='flex justify-center w-full items-center h-full'>
+          <div className='flex flex-col bg-white gap-8 w-72'>
+            {signupData && (
+              <div severity='success'>
+                {signupData.signupUser.firstName} Signed Up
+              </div>
+            )}
+            {e1 && <div severity='error'>{e1.message}</div>}
+            {e2 && <div severity='error'>{e2.message}</div>}
+            <div className='font-acworth text-3xl flex flex-col justify-center gap-6 items-center'>
+              <img
+                src={avatarImg}
+                alt='avatar'
+                width='70px'
+                height='70px'
+                className='rounded-full'
+              />
+              <h5>{showLogin ? ' Login' : ' Signup'}</h5>
             </div>
-          )}
-          {e1 && <div severity='error'>{e1.message}</div>}
-          {e2 && <div severity='error'>{e2.message}</div>}
-          <div className='font-acworth text-3xl flex flex-col justify-center gap-6 items-center'>
-            <img
-              src={getRandomImg()}
-              alt='avatar'
-              width='70px'
-              height='70px'
-              className='rounded-full'
-            />
-            <h5>{showLogin ? ' Login' : ' Signup'}</h5>
-          </div>
-          {!showLogin && (
-            <>
-              <input
-                type='text'
-                name='firstName'
-                placeholder='First Name'
-                onChange={handleChange}
-                required
-                className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
-              />
-              <input
-                type='text'
-                name='lastName'
-                placeholder='Last Name'
-                onChange={handleChange}
-                required
-                className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
-              />
-            </>
-          )}
+            {!showLogin && (
+              <>
+                <input
+                  type='text'
+                  name='firstName'
+                  placeholder='First Name'
+                  onChange={handleChange}
+                  required
+                  className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
+                />
+                <input
+                  type='text'
+                  name='lastName'
+                  placeholder='Last Name'
+                  onChange={handleChange}
+                  required
+                  className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
+                />
+              </>
+            )}
 
-          <input
-            type='email'
-            name='email'
-            label='email'
-            placeholder='Email'
-            variant='standard'
-            onChange={handleChange}
-            required
-            className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
-          />
-          <input
-            type='password'
-            name='password'
-            label='password'
-            variant='standard'
-            placeholder='Password'
-            onChange={handleChange}
-            required
-            className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
-          />
-          <div className='w-full'>
-            <h3
-              className='font-acworth text-secondary w-auto cursor-pointer hover:text-white'
-              onClick={() => {
-                setShowLogin(!showLogin);
-                setFormData({});
-                authForm.current.reset();
-              }}
+            <input
+              type='email'
+              name='email'
+              label='email'
+              placeholder='Email'
+              variant='standard'
+              onChange={handleChange}
+              required
+              className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
+            />
+            <input
+              type='password'
+              name='password'
+              label='password'
+              variant='standard'
+              placeholder='Password'
+              onChange={handleChange}
+              required
+              className='bg-transparent border-b border-gray-500 focus:outline-none focus:border-secondary'
+            />
+            <div className='w-full'>
+              <h3
+                className='font-acworth text-secondary w-auto cursor-pointer hover:text-black'
+                onClick={() => {
+                  setShowLogin(!showLogin);
+                  setFormData({});
+                  authForm.current.reset();
+                }}
+              >
+                {showLogin ? ' Signup' : 'Login'}
+              </h3>
+            </div>
+            <button
+              className='bg-secondary text-white p-2 rounded-full hover:border-secondary hover:border hover:bg-white hover:text-secondary ease-in-out '
+              type='submit'
             >
-              {showLogin ? ' Signup' : 'Login'}
-            </h3>
+              {showLogin ? 'Login' : 'Signup'}
+            </button>
           </div>
-          <button
-            className='bg-secondary text-primary p-2 rounded-full hover:bg-white hover:text-black ease-in-out '
-            type='submit'
-          >
-            {showLogin ? 'Login' : 'Signup'}
-          </button>
+        </div>
+      </form>
+      <div className='w-1/2 login-page flex items-center justify-center relative'>
+        <div>
+          {showLogin ? (
+            <img src={floating} alt='loginimg' width={500} height={800} />
+          ) : (
+            <img src={signupsaly} alt='loginimg' width={500} height={800} />
+          )}
+        </div>
+        <div className='text-white absolute bottom-20 text-center'>
+          <h2 className='text-6xl font-acworth'>Chatter</h2>
+          <p className='font-mustica opacity-80'>Connect with your gang!</p>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 
