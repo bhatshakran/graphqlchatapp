@@ -1,6 +1,6 @@
 import React from 'react';
-import huumans from '../img/huumans.jpeg';
-import wooman from '../img/wooman.jpeg';
+import huumans from '../img/webp/huumans.webp';
+import wooman from '../img/webp/wooman.webp';
 
 const Info = () => {
   return (
