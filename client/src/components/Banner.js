@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import bannerImg from '../img/bannerImg.png';
+import bannerImg from '../img/webp/bannerImg.webp';
 import { useLoggedContext } from '../utils/hooks';
 import Sparks from './Sparks';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import message from '../img/message.svg';
 import support from '../img/support.svg';
-import channel from '../img/channel.png';
+import channel from '../img/webp/channel.webp';
 
 const Features = () => {
   return (
