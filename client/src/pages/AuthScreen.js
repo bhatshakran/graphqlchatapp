@@ -12,6 +12,7 @@ import { useLoggedContext } from '../utils/hooks';
 import RiseLoader from 'react-spinners/RiseLoader';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const imgsArr = [blackgirl, blackspecs, child, brownkid, spanishguy];
 
 const getRandomImg = () => {
@@ -24,6 +25,7 @@ const override = {
 };
 
 const AuthScreen = () => {
+  const navigate = useNavigate();
   const { loggedIn, setLoggedIn } = useLoggedContext();
   const [avatarImg] = React.useState(() => getRandomImg());
   const [formData, setFormData] = useState({});
@@ -37,6 +39,7 @@ const AuthScreen = () => {
       onCompleted(data) {
         localStorage.setItem('jwt', data.signinUser.token);
         setLoggedIn(true);
+        navigate('/chat');
       },
     }
   );

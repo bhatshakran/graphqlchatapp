@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import bannerImg from '../img/bannerImg.png';
+import { useLoggedContext } from '../utils/hooks';
 import Sparks from './Sparks';
 
 const Banner = () => {
+  const { loggedIn } = useLoggedContext();
+
   return (
     // <Container>
     <div className='text-white pt-32 w-full flex flex-col items-center gap-y-24 justify-center px-12 relative sm:pb-96 '>
@@ -14,7 +17,11 @@ const Banner = () => {
           with everyone in an easy and comfortable way possible.
         </h6>
         <button className='bg-secondary font-vistol mt-16 py-3 px-6 rounded-xl text-lg text-gray-300 relative'>
-          <Link to='/chat'>Log in to Chatter</Link>
+          {loggedIn ? (
+            <Link to='/chat'>Go to your chats</Link>
+          ) : (
+            <Link to='/auth'>Log in to Chatter</Link>
+          )}
           <div className='absolute -top-10 -left-14 -rotate-45'>
             <Sparks />
           </div>

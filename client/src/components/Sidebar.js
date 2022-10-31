@@ -4,9 +4,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_USERS } from '../graphql/queries';
 import { useLoggedContext } from '../utils/hooks';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ showUserScreen, activeChild }) => {
   const { loggedIn, setLoggedIn } = useLoggedContext();
+  const navigate = useNavigate();
 
   const { data, loading, error, refetch } = useQuery(GET_ALL_USERS);
   refetch();
@@ -27,6 +29,7 @@ const Sidebar = ({ showUserScreen, activeChild }) => {
           onClick={() => {
             localStorage.removeItem('jwt');
             setLoggedIn(false);
+            navigate('/auth');
           }}
         />
       </div>
