@@ -24,13 +24,13 @@ const ChatScreen = ({ userScreenData }) => {
     },
   });
 
-  useEffect(() => {}, [messages]);
-
   React.useEffect(() => {
     if (messages) {
       const scrollDiv = document.getElementById('scroll-bottom');
       scrollDiv.scrollIntoView();
     }
+
+    console.log('re render');
   }, [messages]);
 
   const [sendMessage] = useMutation(SEND_MSG);
@@ -64,10 +64,7 @@ const ChatScreen = ({ userScreenData }) => {
             <div className='text-bold font-acworth'>{firstName}</div>
           </div>
         </div>
-        <div
-          // id='scroll-bottom'
-          className='user-chat-screen bg-black bg-opacity-90  overflow-auto  px-8'
-        >
+        <div className='user-chat-screen bg-black bg-opacity-90  overflow-auto  px-8'>
           {messages.map((msg, idx) => {
             return (
               <MessageCard
