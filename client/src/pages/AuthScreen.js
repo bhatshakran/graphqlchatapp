@@ -86,11 +86,11 @@ const AuthScreen = () => {
   };
 
   return (
-    <div className='bg-black h-screen  flex font-vistol overflow-hidden'>
+    <div className=' h-auto md:h-screen  flex flex-wrap w-full gap-y-8  font-vistol overflow-hidden'>
       <form
         onSubmit={handleSubmit}
         ref={authForm}
-        className='w-1/2 bg-white flex items-center flex-col'
+        className='w-full md:w-1/2 bg-white flex items-center flex-col '
       >
         <div className='p-8 text-left w-full '>
           <Link to='/' className='text-secondary font-acworth hover:text-black'>
@@ -189,7 +189,7 @@ const AuthScreen = () => {
           </div>
         </div>
       </form>
-      <div className='w-1/2 login-page flex items-center justify-center relative'>
+      <div className='w-full bg-black md:w-1/2  login-page flex items-center justify-center relative '>
         <div>
           {showLogin ? (
             <img src={floating} alt='loginimg' width={500} height={800} />

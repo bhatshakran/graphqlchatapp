@@ -26,7 +26,7 @@ const Chat = () => {
           </Link>
         </h2>
       </div>
-      <div className='flex w-full'>
+      <div className='flex flex-wrap w-full'>
         <Sidebar showUserScreen={populateUserData} activeChild={activeChild} />
         {userScreenData ? (
           <ChatScreen userScreenData={userScreenData} />

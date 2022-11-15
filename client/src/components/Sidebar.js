@@ -21,7 +21,7 @@ const Sidebar = ({ showUserScreen, activeChild }) => {
   };
 
   return (
-    <div className='bg-black w-1/3  max-w-screen-sidebar py-2 text-white sidebar border border-black'>
+    <div className='bg-black w-full md:w-1/3 h-40 md:h-screen md:max-w-screen-sidebar py-2 text-white sidebar border border-black'>
       <div className='flex justify-between w-full  px-4 py-2'>
         <div className='font-acworth '>Chats</div>
         <LogoutIcon
@@ -33,21 +33,22 @@ const Sidebar = ({ showUserScreen, activeChild }) => {
           }}
         />
       </div>
-
-      {data.users
-        ? data.users.map((user) => {
-            return (
-              <UserCard
-                key={user.id}
-                item={user}
-                activeChild={activeChild}
-                runUserCallback={() =>
-                  runsUserCallback(user.id, user.firstName)
-                }
-              />
-            );
-          })
-        : ''}
+      <div className='flex md:flex-col flex-row'>
+        {data.users
+          ? data.users.map((user) => {
+              return (
+                <UserCard
+                  key={user.id}
+                  item={user}
+                  activeChild={activeChild}
+                  runUserCallback={() =>
+                    runsUserCallback(user.id, user.firstName)
+                  }
+                />
+              );
+            })
+          : ''}
+      </div>
     </div>
   );
 };
