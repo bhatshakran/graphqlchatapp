@@ -6,6 +6,7 @@ import { useServer } from 'graphql-ws/lib/use/ws';
 import resolvers from './resolvers.js';
 import typeDefs from './typeDefs.js';
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
 
 const port = process.env.PORT || 4000;
 
@@ -35,6 +36,15 @@ const apolloServer = new ApolloServer({
 await apolloServer.start();
 
 apolloServer.applyMiddleware({ app, path: '/graphql' });
+
+app.use(
+  cors({
+    origin: [
+      'https://chatterweb.netlify.app/',
+      'https://graphqlchatapp.vercel.app/',
+    ],
+  })
+);
 
 const server = app.listen(process.env.PORT, () => {
   const wsServer = new WebSocketServer({
