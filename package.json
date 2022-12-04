@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server2.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server2.js"
+    "dev": "nodemon server2.js",
+    "build": "npm run build"
   },
   "repository": {
     "type": "git",
