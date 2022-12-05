@@ -13,7 +13,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { LoggedStateProvider } from './utils/hooks';
 
 const httpLink = new HttpLink({
-  uri: 'https://https://chatter-x759.onrender.com/graphql',
+  uri: 'https://chatter-x759.onrender.com/graphql',
 });
 const wsLink = new GraphQLWsLink(
   createClient({
