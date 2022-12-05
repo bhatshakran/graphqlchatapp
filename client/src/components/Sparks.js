@@ -29,8 +29,8 @@ const Sparks = () => {
             y2='27.6418'
             gradientUnits='userSpaceOnUse'
           >
-            <stop stop-color='#0267FF' />
-            <stop offset='1' stop-color='#011324' />
+            <stop stopColor='#0267FF' />
+            <stop offset='1' stopColor='#011324' />
           </linearGradient>
           <linearGradient
             id='paint1_linear_9241_45'
@@ -40,8 +40,8 @@ const Sparks = () => {
             y2='51.0029'
             gradientUnits='userSpaceOnUse'
           >
-            <stop stop-color='#0267FF' />
-            <stop offset='1' stop-color='#011324' />
+            <stop stopColor='#0267FF' />
+            <stop offset='1' stopColor='#011324' />
           </linearGradient>
           <linearGradient
             id='paint2_linear_9241_45'
@@ -51,8 +51,8 @@ const Sparks = () => {
             y2='68.4092'
             gradientUnits='userSpaceOnUse'
           >
-            <stop stop-color='#0267FF' />
-            <stop offset='1' stop-color='#011324' />
+            <stop stopColor='#0267FF' />
+            <stop offset='1' stopColor='#011324' />
           </linearGradient>
         </defs>
       </svg>

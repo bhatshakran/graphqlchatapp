@@ -13,13 +13,14 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { LoggedStateProvider } from './utils/hooks';
 
 const httpLink = new HttpLink({
-  uri: 'https://graphqlchatapp.vercel.app/',
+  uri: 'http://localhost:4000/graphql',
 });
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'wss://graphqlchatapp.vercel.app/',
+    url: 'ws://localhost:4000/graphql',
   })
 );
+
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {

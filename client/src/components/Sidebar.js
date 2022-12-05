@@ -20,6 +20,8 @@ const Sidebar = ({ showUserScreen, activeChild }) => {
     showUserScreen(id, firstName);
   };
 
+  console.log(data);
+
   return (
     <div className='bg-black w-full md:w-1/3 h-40 md:h-screen md:max-w-screen-sidebar py-2 text-white sidebar border border-black'>
       <div className='flex justify-between w-full  px-4 py-2'>
@@ -34,7 +36,7 @@ const Sidebar = ({ showUserScreen, activeChild }) => {
         />
       </div>
       <div className='flex md:flex-col flex-row'>
-        {data.users
+        {data && data.users
           ? data.users.map((user) => {
               return (
                 <UserCard

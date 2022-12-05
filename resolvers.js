@@ -1,22 +1,22 @@
-import prismaclient from "@prisma/client";
-import { AuthenticationError, ForbiddenError } from "apollo-server";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import { PubSub } from "graphql-subscriptions";
+import prismaclient from '@prisma/client';
+import { AuthenticationError, ForbiddenError } from 'apollo-server';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { PubSub } from 'graphql-subscriptions';
 
 const pubsub = new PubSub();
 
-const MESSAGE_ADDED = "MESSAGE_ADDED";
+const MESSAGE_ADDED = 'MESSAGE_ADDED';
 
 const prisma = new prismaclient.PrismaClient();
 
 const resolvers = {
   Query: {
     users: async (_, args, { userId }) => {
-      if (!userId) throw new ForbiddenError("You must be logged in!");
+      if (!userId) throw new ForbiddenError('You must be logged in!');
       const users = await prisma.user.findMany({
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         where: {
           id: {
@@ -32,7 +32,7 @@ const resolvers = {
       });
     },
     messagesByUser: async (_, { receiverId }, { userId }) => {
-      if (!userId) throw new ForbiddenError("You must be logged in!");
+      if (!userId) throw new ForbiddenError('You must be logged in!');
       const messages = await prisma.message.findMany({
         where: {
           OR: [
@@ -41,7 +41,7 @@ const resolvers = {
           ],
         },
         orderBy: {
-          createdAt: "asc",
+          createdAt: 'asc',
         },
       });
 
@@ -54,7 +54,7 @@ const resolvers = {
         where: { email: userinfo.email },
       });
       if (userExists)
-        throw new AuthenticationError("User already exists with that email!");
+        throw new AuthenticationError('User already exists with that email!');
       const hashedPwd = await bcrypt.hash(userinfo.password, 10);
       const newUser = await prisma.user.create({
         data: {
@@ -70,19 +70,19 @@ const resolvers = {
         where: { email: signinInfo.email },
       });
       if (!userExists)
-        throw new AuthenticationError("User does not exist with that email!");
+        throw new AuthenticationError('User does not exist with that email!');
       const pwdMatches = await bcrypt.compare(
         signinInfo.password,
         userExists.password
       );
       if (!pwdMatches)
-        throw new AuthenticationError("Email or password is invalid!");
+        throw new AuthenticationError('Email or password is invalid!');
       const token = jwt.sign({ userId: userExists.id }, process.env.JWT_SECRET);
 
       return { token };
     },
     createMessage: async (_, { receiverId, text }, { userId }) => {
-      if (!userId) throw new ForbiddenError("You must be logged in!");
+      if (!userId) throw new ForbiddenError('You must be logged in!');
       const message = await prisma.message.create({
         data: {
           text,
