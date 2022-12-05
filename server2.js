@@ -51,10 +51,17 @@ const server = new ApolloServer({
   ],
 });
 
+const corsOptions = {
+  origin: [
+    'https://localhost:3000',
+    'https://luminous-chimera-937e01.netlify.app',
+  ],
+};
+
 await server.start();
 app.use(
   '/graphql',
-  cors(),
+  cors(corsOptions),
   bodyParser.json(),
   expressMiddleware(server, {
     context: async ({ req }) => {
