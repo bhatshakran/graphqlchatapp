@@ -61,7 +61,7 @@ const corsOptions = {
 await server.start();
 app.use(
   '/graphql',
-  cors(corsOptions),
+  cors(),
   bodyParser.json(),
   expressMiddleware(server, {
     context: async ({ req }) => {
