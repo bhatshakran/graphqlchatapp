@@ -13,11 +13,11 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { LoggedStateProvider } from './utils/hooks';
 
 const httpLink = new HttpLink({
-  uri: 'https://luminous-chimera-937e01.netlify.app/',
+  uri: 'http://luminous-chimera-937e01.netlify.app/graphql',
 });
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'wss://luminous-chimera-937e01.netlify.app/',
+    url: 'ws://luminous-chimera-937e01.netlify.app/graphql',
   })
 );
 
