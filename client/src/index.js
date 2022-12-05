@@ -17,7 +17,7 @@ const httpLink = new HttpLink({
 });
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'wss://https://chatter-x759.onrender.com/graphql',
+    url: 'wss://chatter-x759.onrender.com/graphql',
   })
 );
 
